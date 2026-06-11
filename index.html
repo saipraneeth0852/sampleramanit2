@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Raman iT — Infrastructure, Engineered. | Mysore · Bengaluru</title>
+<meta name="description" content="Raman iT — 29 years of IT consultation, system integration and managed services. Data centers, networks, cloud, surveillance and IoT, engineered end to end." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --ink:#050810;
+  --ink-2:#080d18;
+  --panel:#0c1322;
+  --line:rgba(237,231,220,.09);
+  --line-strong:rgba(237,231,220,.18);
+  --copper:#e58a3e;
+  --copper-hi:#ffb169;
+  --copper-dim:rgba(229,138,62,.14);
+  --signal:#6fa8ff;
+  --bone:#ede7dc;
+  --mute:#8b93a3;
+  --display:'Syne',sans-serif;
+  --body:'Instrument Sans',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+  --pad:clamp(20px,5vw,72px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:auto}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{
+  background:var(--ink);
+  color:var(--bone);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--copper);color:var(--ink)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font:inherit;cursor:pointer;background:none;border:none;color:inherit}
+
+/* ============ CUSTOM CURSOR ============ */
+@media (pointer:fine){
+  body, a, button, .case-card, .sol-card, .svc-card{cursor:none}
+}
+.cursor-dot,.cursor-ring{
+  position:fixed;top:0;left:0;z-index:2000;pointer-events:none;
+  border-radius:50%;transform:translate(-50%,-50%);
+}
+.cursor-dot{width:8px;height:8px;background:var(--copper);box-shadow:0 0 12px rgba(229,138,62,.8)}
+.cursor-ring{
+  width:38px;height:38px;border:1px solid rgba(229,138,62,.55);
+  display:grid;place-items:center;
+  transition:width .35s cubic-bezier(.6,0,.3,1),height .35s cubic-bezier(.6,0,.3,1),
+             background .35s,border-color .35s;
+}
+.cursor-ring .c-label{
+  font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink);opacity:0;transition:opacity .25s;
+}
+.cursor-ring.is-hover{width:56px;height:56px;border-color:var(--copper);background:rgba(229,138,62,.12)}
+.cursor-ring.is-label{width:74px;height:74px;background:var(--copper);border-color:var(--copper)}
+.cursor-ring.is-label .c-label{opacity:1}
+.cursor-ring.is-down{transform:translate(-50%,-50%) scale(.8)}
+@media (pointer:coarse){.cursor-dot,.cursor-ring{display:none}}
+
+/* ============ WHY / SKILLS ============ */
+.why-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(44px,6vw,110px);align-items:start}
+.why-copy p{color:var(--mute);margin-bottom:22px;max-width:58ch}
+.why-copy .h-lg{margin-bottom:30px}
+.checklist{margin-top:34px;display:grid;gap:0}
+.check-row{
+  display:flex;align-items:flex-start;gap:18px;padding:20px 0;border-bottom:1px solid var(--line);
+}
+.check-row:first-child{border-top:1px solid var(--line)}
+.check-row .tick{
+  width:26px;height:26px;flex-shrink:0;border-radius:50%;border:1px solid var(--copper);
+  display:grid;place-items:center;color:var(--copper);font-size:12px;margin-top:2px;
+}
+.check-row p{color:var(--bone);font-size:15.5px;margin:0}
+.skills{position:sticky;top:130px}
+.skill{margin-bottom:38px}
+.skill .s-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+.skill .s-name{font-family:var(--display);font-weight:700;font-size:clamp(18px,1.7vw,24px)}
+.skill .s-val{font-family:var(--mono);font-size:13px;color:var(--copper);letter-spacing:.1em}
+.skill .s-bar{height:3px;background:var(--line);border-radius:3px;overflow:hidden}
+.skill .s-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--copper),var(--copper-hi));border-radius:3px;box-shadow:0 0 14px rgba(229,138,62,.5)}
+.boot-badge{
+  margin-top:14px;padding:24px 28px;border:1px solid var(--line);border-radius:16px;
+  background:linear-gradient(160deg,var(--panel),transparent);
+}
+.boot-badge .b-lbl{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--copper);margin-bottom:10px}
+.boot-badge p{color:var(--mute);font-size:14.5px;margin:0}
+
+/* ============ VERTICAL DETAILS ============ */
+.vert-row{grid-template-columns:90px 1fr auto}
+.vert-row .v-main{min-width:0}
+.vert-row .v-desc{
+  color:var(--mute);font-size:15px;max-width:62ch;
+  max-height:0;overflow:hidden;opacity:0;
+  transition:max-height .6s cubic-bezier(.65,0,.35,1),opacity .5s,margin .5s;
+}
+.vert-row:hover .v-desc,.vert-row.open .v-desc{max-height:160px;opacity:1;margin-top:14px}
+
+/* ============ TURN-KEY STRIP ============ */
+.turnkey{margin-top:clamp(40px,5vw,64px);display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.turnkey .tk-lbl{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute);margin-right:14px}
+.turnkey span{
+  font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  padding:10px 20px;border:1px solid var(--line);border-radius:100px;color:var(--bone);
+  transition:.35s;
+}
+.turnkey span:hover{border-color:var(--copper);color:var(--copper-hi);box-shadow:0 0 18px rgba(229,138,62,.15)}
+
+/* ============ TEAM ============ */
+.team-head{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:clamp(46px,5vw,72px)}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.team-card{
+  background:var(--ink-2);padding:clamp(26px,2.6vw,40px);min-height:280px;
+  display:flex;flex-direction:column;justify-content:space-between;gap:26px;
+  position:relative;overflow:hidden;transition:background .5s;
+}
+.team-card::after{
+  content:'';position:absolute;left:0;bottom:0;height:2px;width:100%;
+  background:var(--copper);transform:scaleX(0);transform-origin:left;
+  transition:transform .55s cubic-bezier(.65,0,.35,1);
+}
+.team-card:hover::after{transform:scaleX(1)}
+.team-card:hover{background:#0e1626}
+.team-card .t-init{
+  width:58px;height:58px;border-radius:50%;border:1px solid var(--line-strong);
+  display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:18px;color:var(--copper);
+  background:radial-gradient(circle at 30% 30%,rgba(229,138,62,.18),transparent 70%);
+}
+.team-card h3{font-family:var(--display);font-weight:700;font-size:clamp(19px,1.7vw,23px);margin:18px 0 6px}
+.team-card .t-role{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--copper)}
+.team-card p{color:var(--mute);font-size:14.5px;margin-top:14px}
+.team-card .t-yrs{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+
+@media (max-width:1020px){
+  .why-grid{grid-template-columns:1fr}
+  .skills{position:relative;top:0}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:760px){
+  .team-grid{grid-template-columns:1fr}
+  .vert-row .v-desc{display:none}
+}
+
+/* ============ PRELOADER ============ */
+#loader{
+  position:fixed;inset:0;z-index:1000;background:var(--ink);
+  display:flex;align-items:flex-end;justify-content:space-between;
+  padding:var(--pad);
+}
+#loader .l-brand{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute)}
+#loader .l-count{font-family:var(--display);font-weight:800;font-size:clamp(72px,16vw,210px);line-height:.85;color:var(--bone)}
+#loader .l-count em{font-style:normal;color:var(--copper)}
+#loader .l-bar{position:absolute;left:0;bottom:0;height:2px;width:0%;background:var(--copper)}
+
+/* ============ CANVAS BG ============ */
+#bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+.grain{
+  position:fixed;inset:-100%;z-index:2;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 7s steps(8) infinite;
+}
+@keyframes grain{
+  0%,100%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-4%)}
+  60%{transform:translate(-2%,-3%)}80%{transform:translate(4%,2%)}
+}
+
+/* ============ NAV ============ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px var(--pad);
+  transition:background .5s,border-color .5s,padding .5s;
+  border-bottom:1px solid transparent;
+}
+nav.scrolled{background:rgba(5,8,16,.72);backdrop-filter:blur(16px);border-color:var(--line);padding:14px var(--pad)}
+.logo{font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:.02em;display:flex;align-items:center;gap:10px}
+.logo .dot{width:9px;height:9px;background:var(--copper);border-radius:50%;box-shadow:0 0 14px var(--copper)}
+.logo span em{font-style:normal;color:var(--copper)}
+.nav-links{display:flex;gap:34px;font-size:13px;font-family:var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.nav-links a{color:var(--mute);position:relative;transition:color .3s}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-5px;height:1px;width:0;background:var(--copper);transition:width .35s cubic-bezier(.65,0,.35,1)}
+.nav-links a:hover{color:var(--bone)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{
+  font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  border:1px solid var(--line-strong);padding:11px 22px;border-radius:100px;color:var(--bone);
+  transition:.35s;position:relative;overflow:hidden;
+}
+.nav-cta:hover{border-color:var(--copper);color:var(--copper-hi);box-shadow:0 0 24px rgba(229,138,62,.25)}
+.burger{display:none;flex-direction:column;gap:6px;z-index:120}
+.burger span{display:block;width:26px;height:2px;background:var(--bone);transition:.4s}
+
+/* ============ SHARED ============ */
+main{position:relative;z-index:5}
+section{position:relative;padding:clamp(90px,12vw,170px) var(--pad)}
+.eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--copper);display:flex;align-items:center;gap:14px;margin-bottom:28px;
+}
+.eyebrow::before{content:'';width:34px;height:1px;background:var(--copper)}
+.h-xl{font-family:var(--display);font-weight:800;font-size:clamp(40px,6.4vw,96px);line-height:1.02;letter-spacing:-.02em}
+.h-lg{font-family:var(--display);font-weight:700;font-size:clamp(32px,4.6vw,64px);line-height:1.06;letter-spacing:-.015em}
+.h-md{font-family:var(--display);font-weight:700;font-size:clamp(22px,2.4vw,30px);line-height:1.18}
+.lead{font-size:clamp(17px,1.5vw,21px);color:var(--mute);max-width:58ch}
+.copper{color:var(--copper)}
+.outline-txt{-webkit-text-stroke:1px rgba(237,231,220,.34);color:transparent}
+.line-mask{overflow:hidden;display:block}
+.line-mask>span{display:block;transform:translateY(110%)}
+.btn{
+  display:inline-flex;align-items:center;gap:14px;
+  font-family:var(--mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+  padding:18px 34px;border-radius:100px;border:1px solid var(--copper);
+  color:var(--ink);background:var(--copper);font-weight:500;
+  transition:.4s cubic-bezier(.6,0,.3,1);
+}
+.btn:hover{background:var(--copper-hi);box-shadow:0 8px 40px rgba(229,138,62,.35);transform:translateY(-3px)}
+.btn.ghost{background:transparent;color:var(--bone);border-color:var(--line-strong)}
+.btn.ghost:hover{border-color:var(--copper);color:var(--copper-hi);box-shadow:0 0 30px rgba(229,138,62,.18)}
+.btn svg{transition:transform .4s}
+.btn:hover svg{transform:translateX(5px)}
+
+/* ============ HERO ============ */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;
+  padding-bottom:clamp(56px,7vw,90px);padding-top:140px;
+}
+.hero-tag{
+  font-family:var(--mono);font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--mute);
+  display:flex;align-items:center;gap:16px;margin-bottom:34px;
+}
+.hero-tag .pulse{width:8px;height:8px;border-radius:50%;background:var(--copper);position:relative}
+.hero-tag .pulse::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:1px solid var(--copper);animation:ping 2s ease-out infinite}
+@keyframes ping{0%{transform:scale(.4);opacity:1}100%{transform:scale(1.6);opacity:0}}
+.hero h1{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(52px,9.4vw,150px);line-height:.96;letter-spacing:-.025em;
+  text-transform:uppercase;
+}
+.hero h1 .row{display:block;overflow:hidden}
+.hero h1 .ch{display:inline-block;transform:translateY(115%);will-change:transform}
+.hero-foot{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:40px;
+  margin-top:clamp(36px,5vw,64px);flex-wrap:wrap;
+}
+.hero-foot p{max-width:46ch;color:var(--mute);font-size:clamp(16px,1.4vw,19px)}
+.hero-meta{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);display:flex;gap:34px}
+.hero-meta b{display:block;color:var(--bone);font-weight:500;margin-top:6px}
+.scroll-hint{
+  position:absolute;right:var(--pad);bottom:26px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--mute);
+  writing-mode:vertical-rl;display:flex;align-items:center;gap:12px;
+}
+.scroll-hint::after{content:'';width:1px;height:54px;background:linear-gradient(var(--copper),transparent);animation:drip 1.8s ease-in-out infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}55%{transform:scaleY(1);transform-origin:top}56%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ============ MARQUEE ============ */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0;overflow:hidden;background:rgba(12,19,34,.4);backdrop-filter:blur(4px)}
+.marquee-track{display:flex;width:max-content;will-change:transform}
+.marquee-track span{
+  font-family:var(--display);font-weight:700;font-size:clamp(18px,2.2vw,28px);
+  text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;padding:0 34px;color:var(--bone);
+  display:flex;align-items:center;gap:34px;
+}
+.marquee-track span i{font-style:normal;color:var(--copper);font-size:.7em}
+
+/* ============ ABOUT ============ */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,110px);align-items:start}
+.stat-29{position:sticky;top:120px}
+.stat-29 .big{
+  font-family:var(--display);font-weight:800;line-height:.8;
+  font-size:clamp(140px,22vw,340px);letter-spacing:-.04em;
+  background:linear-gradient(160deg,var(--bone) 30%,var(--copper) 110%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.stat-29 .cap{font-family:var(--mono);font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--mute);margin-top:18px}
+.about-copy .h-lg{margin-bottom:30px}
+.about-copy p{color:var(--mute);margin-bottom:22px;max-width:56ch}
+.about-quote{
+  margin:40px 0;padding:28px 32px;border-left:2px solid var(--copper);
+  background:linear-gradient(90deg,var(--copper-dim),transparent 70%);
+  font-family:var(--display);font-weight:600;font-size:clamp(18px,1.8vw,23px);line-height:1.4;color:var(--bone);
+}
+.about-sign{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.about-sign b{color:var(--copper);font-weight:500}
+
+/* ============ SOLUTIONS ============ */
+.sol-head{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-bottom:clamp(48px,6vw,80px);flex-wrap:wrap}
+.sol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.sol-card{
+  background:var(--ink-2);padding:clamp(28px,3vw,44px);min-height:300px;
+  display:flex;flex-direction:column;justify-content:space-between;gap:34px;
+  position:relative;overflow:hidden;transition:background .5s;
+}
+.sol-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(229,138,62,.10),transparent 60%);
+  opacity:0;transition:opacity .5s;
+}
+.sol-card:hover::before{opacity:1}
+.sol-card .idx{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--mute)}
+.sol-card h3{font-family:var(--display);font-weight:700;font-size:clamp(20px,1.9vw,26px);line-height:1.2;margin:14px 0 12px}
+.sol-card p{font-size:15px;color:var(--mute)}
+.sol-card .arrow{
+  width:44px;height:44px;border:1px solid var(--line-strong);border-radius:50%;
+  display:grid;place-items:center;color:var(--mute);transition:.4s;
+}
+.sol-card:hover .arrow{border-color:var(--copper);color:var(--copper);transform:rotate(-45deg) scale(1.06)}
+.sol-card:hover h3{color:var(--copper-hi)}
+
+/* ============ SERVICES (horizontal) ============ */
+.services{padding-left:0;padding-right:0;overflow:hidden}
+.svc-head{padding:0 var(--pad);margin-bottom:clamp(46px,5vw,70px)}
+.svc-rail{display:flex;gap:clamp(20px,2.4vw,36px);padding:0 var(--pad);width:max-content;will-change:transform}
+.svc-card{
+  width:clamp(330px,30vw,460px);flex-shrink:0;
+  border:1px solid var(--line);border-radius:20px;background:linear-gradient(170deg,var(--panel),var(--ink-2));
+  padding:clamp(28px,2.6vw,42px);min-height:430px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  position:relative;overflow:hidden;transition:border-color .4s,transform .4s;
+}
+.svc-card:hover{border-color:rgba(229,138,62,.5);transform:translateY(-8px)}
+.svc-card .num{
+  font-family:var(--display);font-weight:800;font-size:clamp(68px,7vw,104px);line-height:1;
+  -webkit-text-stroke:1px rgba(229,138,62,.45);color:transparent;transition:.5s;
+}
+.svc-card:hover .num{color:var(--copper);-webkit-text-stroke:1px var(--copper)}
+.svc-card h3{font-family:var(--display);font-weight:700;font-size:clamp(22px,2vw,29px);line-height:1.15;margin:26px 0 14px}
+.svc-card p{color:var(--mute);font-size:15.5px}
+.svc-card .tagline{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--copper);margin-top:26px}
+.svc-progress{height:2px;background:var(--line);margin:60px var(--pad) 0;position:relative;border-radius:2px}
+.svc-progress .fill{position:absolute;inset:0;background:var(--copper);transform:scaleX(0);transform-origin:left;border-radius:2px}
+
+/* ============ STATS ============ */
+.stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(8,13,24,.5);backdrop-filter:blur(6px)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px}
+.stat .val{
+  font-family:var(--display);font-weight:800;font-size:clamp(46px,5.6vw,84px);line-height:1;letter-spacing:-.02em;
+  display:flex;align-items:baseline;gap:4px;
+}
+.stat .val i{font-style:normal;color:var(--copper);font-size:.6em}
+.stat .lbl{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);margin-top:14px}
+
+/* ============ VERTICALS ============ */
+.verticals .lead{margin-bottom:clamp(40px,5vw,64px)}
+.vert-list{border-top:1px solid var(--line)}
+.vert-row{
+  display:grid;grid-template-columns:90px 1fr auto;align-items:center;gap:30px;
+  padding:clamp(24px,3vw,38px) 0;border-bottom:1px solid var(--line);
+  position:relative;overflow:hidden;cursor:default;
+}
+.vert-row::after{
+  content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--copper-dim),transparent 60%);
+  transform:translateX(-101%);transition:transform .55s cubic-bezier(.65,0,.35,1);z-index:-1;
+}
+.vert-row:hover::after{transform:translateX(0)}
+.vert-row .no{font-family:var(--mono);font-size:13px;color:var(--mute);letter-spacing:.14em}
+.vert-row h3{font-family:var(--display);font-weight:700;font-size:clamp(24px,3.4vw,46px);transition:.4s;letter-spacing:-.01em}
+.vert-row:hover h3{color:var(--copper-hi);transform:translateX(14px)}
+.vert-row .tag{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+
+/* ============ CASE STUDIES ============ */
+.cases-head{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:clamp(48px,6vw,80px)}
+.case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(24px,3vw,44px)}
+.case-card{border:1px solid var(--line);border-radius:22px;overflow:hidden;background:var(--ink-2);transition:border-color .4s,transform .5s}
+.case-card:hover{border-color:rgba(229,138,62,.45);transform:translateY(-8px)}
+.case-visual{height:clamp(220px,24vw,320px);position:relative;overflow:hidden}
+.case-visual .art{position:absolute;inset:-12%;transition:transform 1s cubic-bezier(.2,.6,.2,1)}
+.case-card:hover .art{transform:scale(1.07)}
+.art-1{background:radial-gradient(circle at 25% 30%,#2a3b63 0%,transparent 55%),radial-gradient(circle at 80% 75%,rgba(229,138,62,.55) 0%,transparent 45%),linear-gradient(150deg,#0d1730,#070b16)}
+.art-2{background:radial-gradient(circle at 75% 25%,rgba(229,138,62,.5) 0%,transparent 50%),radial-gradient(circle at 20% 85%,#23406b 0%,transparent 55%),linear-gradient(200deg,#101a33,#060a14)}
+.art-3{background:conic-gradient(from 210deg at 60% 40%,#0a1226,#1c3158,#0a1226 60%),radial-gradient(circle at 30% 70%,rgba(229,138,62,.4),transparent 50%)}
+.art-4{background:radial-gradient(circle at 50% 110%,rgba(229,138,62,.55),transparent 55%),linear-gradient(160deg,#13203d,#05080f)}
+.case-visual .gridlines{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(237,231,220,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(237,231,220,.06) 1px,transparent 1px);
+  background-size:42px 42px;
+}
+.case-visual .chip{
+  position:absolute;top:18px;left:18px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  padding:7px 14px;border:1px solid var(--line-strong);border-radius:100px;background:rgba(5,8,16,.6);backdrop-filter:blur(6px);color:var(--bone);
+}
+.case-body{padding:clamp(24px,2.6vw,36px);display:flex;justify-content:space-between;gap:24px;align-items:flex-start}
+.case-body h3{font-family:var(--display);font-weight:700;font-size:clamp(19px,1.8vw,24px);line-height:1.25;max-width:26ch}
+.case-body .go{width:46px;height:46px;flex-shrink:0;border:1px solid var(--line-strong);border-radius:50%;display:grid;place-items:center;color:var(--mute);transition:.4s}
+.case-card:hover .go{border-color:var(--copper);color:var(--copper);transform:rotate(-45deg)}
+
+/* ============ TESTIMONIAL ============ */
+.testimonial{text-align:center}
+.testimonial blockquote{
+  font-family:var(--display);font-weight:600;font-size:clamp(22px,3.2vw,42px);line-height:1.32;
+  max-width:24em;margin:0 auto clamp(36px,4vw,54px);letter-spacing:-.01em;
+}
+.testimonial blockquote .w{display:inline-block;opacity:.14;will-change:opacity}
+.testimonial .quote-mark{font-family:var(--display);font-size:clamp(60px,7vw,110px);color:var(--copper);line-height:.6;display:block;margin-bottom:30px}
+.testimonial cite{font-style:normal;font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute)}
+.testimonial cite b{display:block;color:var(--copper);font-weight:500;margin-bottom:8px}
+.test-others{display:flex;justify-content:center;gap:clamp(20px,4vw,60px);margin-top:60px;flex-wrap:wrap}
+.test-others span{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);padding:12px 22px;border:1px solid var(--line);border-radius:100px;transition:.35s}
+.test-others span:hover{border-color:var(--copper);color:var(--bone)}
+
+/* ============ CONTACT ============ */
+.contact{border-top:1px solid var(--line)}
+.contact-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(48px,7vw,120px);align-items:start}
+.contact h2.h-xl{margin-bottom:34px}
+.contact h2 .ln{display:block;overflow:hidden}
+.big-mail{
+  font-family:var(--display);font-weight:700;font-size:clamp(22px,3.2vw,42px);
+  display:inline-block;position:relative;margin-top:10px;letter-spacing:-.01em;
+}
+.big-mail::after{content:'';position:absolute;left:0;bottom:-6px;width:100%;height:2px;background:var(--copper);transform:scaleX(0);transform-origin:right;transition:transform .5s cubic-bezier(.65,0,.35,1)}
+.big-mail:hover::after{transform:scaleX(1);transform-origin:left}
+.big-mail:hover{color:var(--copper-hi)}
+.office{padding:26px 0;border-bottom:1px solid var(--line)}
+.office:first-child{border-top:1px solid var(--line)}
+.office .o-lbl{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--copper);margin-bottom:12px}
+.office p{color:var(--mute);font-size:15.5px}
+.office a{color:var(--bone);transition:color .3s}
+.office a:hover{color:var(--copper-hi)}
+
+/* ============ FOOTER ============ */
+footer{border-top:1px solid var(--line);padding:50px var(--pad) 40px;position:relative;z-index:5;background:rgba(5,8,16,.7);backdrop-filter:blur(10px)}
+.foot-top{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;margin-bottom:36px}
+.foot-links{display:flex;gap:28px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+.foot-links a{color:var(--mute);transition:color .3s}
+.foot-links a:hover{color:var(--copper)}
+.foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:var(--mute);font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.giant-brand{
+  font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:-.03em;
+  font-size:clamp(64px,13.6vw,230px);line-height:.84;text-align:center;
+  background:linear-gradient(180deg,rgba(237,231,220,.16),rgba(237,231,220,.02));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  margin:50px 0 30px;user-select:none;
+}
+
+/* ============ REVEAL UTILITIES ============ */
+.reveal{opacity:0;transform:translateY(56px);will-change:transform,opacity}
+.reveal-l{opacity:0;transform:translateX(-56px)}
+.reveal-r{opacity:0;transform:translateX(56px)}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1020px){
+  .sol-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:48px 30px}
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+  .stat-29{position:relative;top:0}
+}
+@media (max-width:760px){
+  .nav-links{display:none}
+  .nav-cta{display:none}
+  .burger{display:flex}
+  .sol-grid,.case-grid{grid-template-columns:1fr}
+  .vert-row{grid-template-columns:50px 1fr;gap:16px}
+  .vert-row .tag{display:none}
+  .scroll-hint{display:none}
+  .svc-rail{flex-direction:column;width:100%;padding:0 var(--pad)}
+  .svc-card{width:100%;min-height:auto}
+  .svc-progress{display:none}
+}
+.mobile-menu{
+  position:fixed;inset:0;z-index:110;background:rgba(5,8,16,.97);backdrop-filter:blur(20px);
+  display:flex;flex-direction:column;justify-content:center;padding:var(--pad);
+  transform:translateY(-100%);transition:transform .6s cubic-bezier(.76,0,.24,1);
+}
+.mobile-menu.open{transform:translateY(0)}
+.mobile-menu a{
+  font-family:var(--display);font-weight:700;font-size:clamp(34px,9vw,56px);
+  padding:14px 0;border-bottom:1px solid var(--line);transition:color .3s,padding-left .3s;
+}
+.mobile-menu a:hover{color:var(--copper);padding-left:14px}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"><span class="c-label" id="cursorLabel">View</span></div>
+
+<!-- PRELOADER -->
+<div id="loader">
+  <div class="l-brand">Raman iT &nbsp;//&nbsp; Boot sequence</div>
+  <div class="l-count"><span id="lnum">0</span><em>%</em></div>
+  <div class="l-bar" id="lbar"></div>
+</div>
+
+<!-- THREE.JS BACKGROUND -->
+<canvas id="bg"></canvas>
+<div class="grain"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="logo" href="#top"><span class="dot"></span><span>RAMAN<em>iT</em></span></a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#solutions">Solutions</a>
+    <a href="#services">Services</a>
+    <a href="#cases">Case Studies</a>
+    <a href="#team">Team</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a class="nav-cta" href="#contact">Start a project</a>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mmenu">
+  <a href="#about">About</a>
+  <a href="#solutions">Solutions</a>
+  <a href="#services">Services</a>
+  <a href="#cases">Case Studies</a>
+  <a href="#team">Team</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-tag" data-intro><span class="pulse"></span> Systems online · Mysuru — Bengaluru · Est. 1997</div>
+    <h1 id="heroTitle">
+      <span class="row" data-line>Infrastructure,</span>
+      <span class="row" data-line><span class="outline-txt">Engineered</span></span>
+      <span class="row" data-line>End to <span class="copper">End.</span></span>
+    </h1>
+    <div class="hero-foot">
+      <p data-intro>For 29 years we have architected, secured, monitored and managed every layer of enterprise technology — so your people experience IT that simply works.</p>
+      <div class="hero-meta" data-intro>
+        <div>Experience<b>29 Years</b></div>
+        <div>Headquarters<b>Mysuru, IN</b></div>
+        <div>Scope<b>Edge → Cloud</b></div>
+      </div>
+    </div>
+    <div class="scroll-hint">Scroll</div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee-track" id="marquee">
+      <span>Data Centers <i>◆</i> Cyber Security <i>◆</i> Cloud Services <i>◆</i> Network Transformation <i>◆</i> Surveillance <i>◆</i> IoT Design <i>◆</i> Digital Workplace <i>◆</i></span>
+      <span>Data Centers <i>◆</i> Cyber Security <i>◆</i> Cloud Services <i>◆</i> Network Transformation <i>◆</i> Surveillance <i>◆</i> IoT Design <i>◆</i> Digital Workplace <i>◆</i></span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-grid">
+      <div class="stat-29">
+        <div class="big" id="bigYears">29</div>
+        <div class="cap">Years of trust, commitment<br/>and uptime</div>
+      </div>
+      <div class="about-copy">
+        <div class="eyebrow reveal">About Raman iT</div>
+        <h2 class="h-lg reveal">Beyond boxes.<br/>Beyond people.</h2>
+        <div class="about-quote reveal">“ICT products and services should be liberated — and looked at beyond mere boxes and people.”</div>
+        <p class="reveal">Raman iT brings nearly three decades of IT consultation, system integration and managed services to enterprises across India. Headquartered in Mysuru with a corporate office in Bengaluru, we are a single-stop destination for every layer of IT infrastructure — in the data center and in the cloud.</p>
+        <p class="reveal">With a strength of 100+ employees, our trust is earned through stringent quality processes, compliance policies and on-time delivery across every project — recognized by industry awards along the way. We serve customers across IT &amp; ITES, education, healthcare, research, manufacturing, government, banking, airports, temples, railways, nuclear establishments and defense.</p>
+        <div class="checklist reveal">
+          <div class="check-row"><span class="tick">✓</span><p>Infrastructure solutions with best-in-class technology partners</p></div>
+          <div class="check-row"><span class="tick">✓</span><p>Leading system integrator with end-to-end IT expertise</p></div>
+          <div class="check-row"><span class="tick">✓</span><p>Serving 1000+ SMEs, including 100 long-standing valued customers</p></div>
+          <div class="check-row"><span class="tick">✓</span><p>Specialists in the BOOT (build–own–operate–transfer) delivery model</p></div>
+          <div class="check-row"><span class="tick">✓</span><p>Nurturing talent to resolve complex, business-critical challenges</p></div>
+        </div>
+        <p class="about-sign reveal" style="margin-top:32px"><b>Harish Raman</b> — Managing Director, Raman iT</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY RAMAN IT -->
+  <section id="why">
+    <div class="why-grid">
+      <div class="why-copy">
+        <div class="eyebrow reveal">Why Raman iT</div>
+        <h2 class="h-lg reveal">A digital<br/>transformation<br/><span class="copper">catalyst.</span></h2>
+        <p class="reveal">The future belongs to enterprises that embrace digital transformation — moving from outdated legacy systems to fully digital solutions. We act as the catalyst on that journey, helping customers achieve better revenue, profitability and business outcomes.</p>
+        <p class="reveal">Our infrastructure work has directly impacted bottom lines across education, retail and BFSI — streamlining operations, consolidating information, and pairing the right action with the right technology to make organizations agile, lean and efficient.</p>
+        <div class="boot-badge reveal">
+          <div class="b-lbl">Delivery Model</div>
+          <p>BOOT — build, own, operate, transfer. We can carry your infrastructure through its entire lifecycle before handing over a running system.</p>
+        </div>
+      </div>
+      <div class="skills">
+        <div class="eyebrow reveal">Our skill</div>
+        <div class="skill reveal">
+          <div class="s-head"><span class="s-name">Commercial</span><span class="s-val" data-skill="98">0%</span></div>
+          <div class="s-bar"><div class="s-fill" data-fill="98"></div></div>
+        </div>
+        <div class="skill reveal">
+          <div class="s-head"><span class="s-name">Business</span><span class="s-val" data-skill="80">0%</span></div>
+          <div class="s-bar"><div class="s-fill" data-fill="80"></div></div>
+        </div>
+        <div class="skill reveal">
+          <div class="s-head"><span class="s-name">Corporate</span><span class="s-val" data-skill="70">0%</span></div>
+          <div class="s-bar"><div class="s-fill" data-fill="70"></div></div>
+        </div>
+        <p class="reveal" style="color:var(--mute);font-size:15px;margin-top:30px">Forging relationships between corporations, governments and global NGOs begins with connections between people.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTIONS -->
+  <section id="solutions">
+    <div class="sol-head">
+      <div>
+        <div class="eyebrow reveal">Solutions</div>
+        <h2 class="h-lg reveal">Every technology<br/>domain. <span class="outline-txt">One partner.</span></h2>
+      </div>
+      <p class="lead reveal" style="max-width:38ch">We architect, implement, secure, monitor and manage — and our solutions are end to end.</p>
+    </div>
+    <div class="sol-grid">
+      <div class="sol-card reveal">
+        <div><div class="idx">SOL / 01</div><h3>Data Center Modernization</h3><p>Best-fit data center solutions built on innovative, disruptive technology — designed for what comes next.</p></div>
+        <div class="arrow">→</div>
+      </div>
+      <div class="sol-card reveal">
+        <div><div class="idx">SOL / 02</div><h3>Cyber Security &amp; Consulting</h3><p>Antivirus, SIEM, ITIL governance, risk &amp; compliance, VAPT and SOC audit — security as an integrated discipline.</p></div>
+        <div class="arrow">→</div>
+      </div>
+      <div class="sol-card reveal">
+        <div><div class="idx">SOL / 03</div><h3>Network Transformation</h3><p>Liberate your network from hardware constraints and leverage next-generation architectures like SDN.</p></div>
+        <div class="arrow">→</div>
+      </div>
+      <div class="sol-card reveal">
+        <div><div class="idx">SOL / 04</div><h3>Surveillance as a Service</h3><p>Video integration under the ONVIF platform with hierarchy-based access and control — campus to city scale.</p></div>
+        <div class="arrow">→</div>
+      </div>
+      <div class="sol-card reveal">
+        <div><div class="idx">SOL / 05</div><h3>End User Computing</h3><p>Virtual Desktop Infrastructure that lowers cost, simplifies user management and hardens endpoint security.</p></div>
+        <div class="arrow">→</div>
+      </div>
+      <div class="sol-card reveal">
+        <div><div class="idx">SOL / 06</div><h3>IoT Design &amp; Build</h3><p>Product lifecycle management, automated asset tracking, traffic management and RFID-based object detection.</p></div>
+        <div class="arrow">→</div>
+      </div>
+      <div class="sol-card reveal">
+        <div><div class="idx">SOL / 07</div><h3>Cloud Services</h3><p>Strategy, migration and operations across public, private and hybrid clouds — sized to your workload, not the hype.</p></div>
+        <div class="arrow">→</div>
+      </div>
+      <div class="sol-card reveal">
+        <div><div class="idx">SOL / 08</div><h3>Automation &amp; Analytics</h3><p>Turn operational data into decisions with automation pipelines and analytics built into your infrastructure.</p></div>
+        <div class="arrow">→</div>
+      </div>
+      <div class="sol-card reveal">
+        <div><div class="idx">SOL / 09</div><h3>Digital Workplace &amp; Power</h3><p>Modern workplace tooling, mobility and Office 365 — backed by integrated data center and uninterrupted power solutions.</p></div>
+        <div class="arrow">→</div>
+      </div>
+    </div>
+    <div class="turnkey reveal">
+      <span class="tk-lbl">Turn-key projects //</span>
+      <span>Surveillance as a Service</span>
+      <span>Infrastructure as a Service</span>
+      <span>Temple Management ERP</span>
+      <span>IoT Design &amp; Build</span>
+      <span>UPS &amp; Power Solutions</span>
+      <span>VDI &amp; Mobility</span>
+      <span>Office 365</span>
+    </div>
+  </section>
+
+  <!-- SERVICES — HORIZONTAL SCROLL -->
+  <section class="services" id="services">
+    <div class="svc-head">
+      <div class="eyebrow reveal">Managed Services</div>
+      <h2 class="h-lg reveal">We run it,<br/>so you can <span class="copper">build.</span></h2>
+    </div>
+    <div class="svc-wrap" id="svcWrap">
+      <div class="svc-rail" id="svcRail">
+        <div class="svc-card"><div><div class="num">01</div><h3>Master MSP</h3><p>A single accountable partner orchestrating your entire managed-services estate — vendors, SLAs and outcomes.</p></div><div class="tagline">Orchestration</div></div>
+        <div class="svc-card"><div><div class="num">02</div><h3>Managed Cloud Services</h3><p>Migration, optimization and 24×7 operations across public, private and hybrid cloud environments.</p></div><div class="tagline">Cloud Ops</div></div>
+        <div class="svc-card"><div><div class="num">03</div><h3>Remote Infrastructure (RIMS)</h3><p>Proactive remote monitoring and management of servers, storage and networks — issues fixed before you feel them.</p></div><div class="tagline">Always Watching</div></div>
+        <div class="svc-card"><div><div class="num">04</div><h3>Network Operations (NOC)</h3><p>Round-the-clock NOC support keeping your network healthy, observable and audit-ready.</p></div><div class="tagline">24 × 7 × 365</div></div>
+        <div class="svc-card"><div><div class="num">05</div><h3>Facility Management (FMS)</h3><p>On-site engineers and structured FMS support that keep day-to-day IT humming across your locations.</p></div><div class="tagline">On The Ground</div></div>
+        <div class="svc-card"><div><div class="num">06</div><h3>AMC Support</h3><p>Annual maintenance contracts with guaranteed response times — predictable cost, dependable uptime.</p></div><div class="tagline">Guaranteed SLA</div></div>
+        <div class="svc-card"><div><div class="num">07</div><h3>Professional Services</h3><p>Technology consulting and project expertise for migrations, rollouts and transformation programs.</p></div><div class="tagline">Expertise On Call</div></div>
+      </div>
+    </div>
+    <div class="svc-progress"><div class="fill" id="svcFill"></div></div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="stats-grid">
+      <div class="stat reveal"><div class="val"><span data-count="29"></span><i>yrs</i></div><div class="lbl">Of experience</div></div>
+      <div class="stat reveal"><div class="val"><span data-count="1000"></span><i>+</i></div><div class="lbl">SMEs served</div></div>
+      <div class="stat reveal"><div class="val"><span data-count="100"></span><i>+</i></div><div class="lbl">Employees strong</div></div>
+      <div class="stat reveal"><div class="val"><span data-count="100"></span><i>+</i></div><div class="lbl">Valued customers</div></div>
+    </div>
+  </section>
+
+  <!-- VERTICALS -->
+  <section class="verticals">
+    <div class="eyebrow reveal">Who we serve</div>
+    <h2 class="h-lg reveal" style="margin-bottom:26px">Trusted across<br/>critical sectors.</h2>
+    <p class="lead reveal">From banking floors to temple towns, our infrastructure runs where failure is not an option.</p>
+    <div class="vert-list">
+      <div class="vert-row reveal"><span class="no">/01</span><div class="v-main"><h3>Banking &amp; Financial</h3><div class="v-desc">One of the most security-critical sectors there is. Our solutions make banking infrastructure more reliable, faster and harder to breach — cutting costs while improving the customer experience.</div></div><span class="tag">BFSI · Compliance</span></div>
+      <div class="vert-row reveal"><span class="no">/02</span><div class="v-main"><h3>Government &amp; Defense</h3><div class="v-desc">A full technology partner to government growth initiatives — strategic and tactical support across software, hardware and infrastructure that turns policy into working systems.</div></div><span class="tag">Secure · Sovereign</span></div>
+      <div class="vert-row reveal"><span class="no">/03</span><div class="v-main"><h3>Education &amp; Research</h3><div class="v-desc">From virtual classrooms to distance-learning platforms, we build complete solutions that help education reach more people and make the most of available resources.</div></div><span class="tag">Campus Scale</span></div>
+      <div class="vert-row reveal"><span class="no">/04</span><div class="v-main"><h3>Healthcare</h3><div class="v-desc">Hospital-grade networks and infrastructure where downtime is measured in lives, not minutes — designed, deployed and managed for continuous availability.</div></div><span class="tag">Zero Downtime</span></div>
+      <div class="vert-row reveal"><span class="no">/05</span><div class="v-main"><h3>Temple Management</h3><div class="v-desc">Our ERP automates routine, recurring temple functions — every rupee received and paid, accounted accurately — with less manpower, time and effort, safely and at speed.</div></div><span class="tag">ERP · Surveillance</span></div>
+      <div class="vert-row reveal"><span class="no">/06</span><div class="v-main"><h3>Retail &amp; Media</h3><div class="v-desc">Technology that accelerates retail growth and media operations — billing, customer service, network management, wireless, networked equipment, cable and satellite.</div></div><span class="tag">Distributed Edge</span></div>
+    </div>
+  </section>
+
+  <!-- CASE STUDIES -->
+  <section id="cases">
+    <div class="cases-head">
+      <div>
+        <div class="eyebrow reveal">Case Studies</div>
+        <h2 class="h-lg reveal">Proof, in<br/><span class="outline-txt">production.</span></h2>
+      </div>
+      <a class="btn ghost reveal" href="https://ramanit.in/case-studies/" target="_blank" rel="noopener">All case studies
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h11M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg>
+      </a>
+    </div>
+    <div class="case-grid">
+      <a class="case-card reveal" href="https://ramanit.in/case-study/renewing-of-dc-dr-at-manufacturing-firm/" target="_blank" rel="noopener">
+        <div class="case-visual"><div class="art art-1"></div><div class="gridlines"></div><span class="chip">NRR Sons · Manufacturing</span></div>
+        <div class="case-body"><h3>Renewing DC &amp; DR at a manufacturing firm</h3><span class="go">→</span></div>
+      </a>
+      <a class="case-card reveal" href="https://ramanit.in/case-study/religious-authority-goes-eminent-with-wireless-surveillance-security/" target="_blank" rel="noopener">
+        <div class="case-visual"><div class="art art-2"></div><div class="gridlines"></div><span class="chip">MM Hills · Surveillance</span></div>
+        <div class="case-body"><h3>Wireless surveillance security for a religious authority</h3><span class="go">→</span></div>
+      </a>
+      <a class="case-card reveal" href="https://ramanit.in/case-study/wired-lan-infrastructure-that-provisioned-surveillance-campus-wi-fi-facility/" target="_blank" rel="noopener">
+        <div class="case-visual"><div class="art art-3"></div><div class="gridlines"></div><span class="chip">AIISH · Campus Network</span></div>
+        <div class="case-body"><h3>Wired LAN with campus-wide Wi-Fi &amp; surveillance</h3><span class="go">→</span></div>
+      </a>
+      <a class="case-card reveal" href="https://ramanit.in/case-study/rendered-the-solution-for-network-infrastructure/" target="_blank" rel="noopener">
+        <div class="case-visual"><div class="art art-4"></div><div class="gridlines"></div><span class="chip">Jayadeva · Healthcare</span></div>
+        <div class="case-body"><h3>Network infrastructure for a leading hospital</h3><span class="go">→</span></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="testimonial">
+    <span class="quote-mark reveal">“</span>
+    <blockquote id="quote">Their understanding of our requirements, the latest technological inputs, and impeccable, professional execution — I highly recommend Raman iT for all your IT hardware needs.</blockquote>
+    <cite class="reveal"><b>Girish Saannappanavar</b>CEO, TechVibrant Innovative Solutions</cite>
+    <div class="test-others reveal">
+      <span>Arjun Ranga — MD, NRS</span>
+      <span>Vinay Ramesh — MD, Hospitality</span>
+      <span>Ajit Pai — MD, VWF Industries</span>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team">
+    <div class="team-head">
+      <div>
+        <div class="eyebrow reveal">Our Team</div>
+        <h2 class="h-lg reveal">The people behind<br/><span class="outline-txt">the uptime.</span></h2>
+      </div>
+      <p class="lead reveal" style="max-width:40ch">A network of experts with a strong interest in coaching, capability building and stakeholder relationships.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div><div class="t-init">HS</div><h3>Harish S V</h3><div class="t-role">Managing Director</div>
+        <p>Leading Raman iT since founding Raman Computers in the late '90s. A Mysore University business-management graduate, he is the architect behind the company's biggest projects and a former Round Table India member focused on building school infrastructure for underprivileged children.</p></div>
+        <div class="t-yrs">29 Years</div>
+      </div>
+      <div class="team-card reveal">
+        <div><div class="t-init">PH</div><h3>Pooja Harish</h3><div class="t-role">Manager — HR / Finance</div>
+        <p>An MBA in HR management, she has steered people and finance for two decades — refreshing the company's image, sharpening its marketing and uplifting its teams. Has also served Mysore Ladies Circle in leadership roles dedicated to community service.</p></div>
+        <div class="t-yrs">20 Years</div>
+      </div>
+      <div class="team-card reveal">
+        <div><div class="t-init">VY</div><h3>Venkataramu Y S</h3><div class="t-role">Director</div>
+        <p>A driving force behind the company's growth — setting regional sales objectives, building field action plans, tracking market trends and keeping operations running through disciplined scheduling and follow-through.</p></div>
+        <div class="t-yrs">29 Years</div>
+      </div>
+      <div class="team-card reveal">
+        <div><div class="t-init">JP</div><h3>Jithesh Pawar M A</h3><div class="t-role">Sr. Business Development Manager</div>
+        <p>Forecasts and develops sales programs across regions and territories, projecting volumes for existing and new products while keeping delivery teams aligned with demand.</p></div>
+        <div class="t-yrs">Growth Engine</div>
+      </div>
+      <div class="team-card reveal">
+        <div><div class="t-init">SY</div><h3>Santhosh Y C</h3><div class="t-role">Support Head</div>
+        <p>Key architect of our networking solutions — Tier-2/Tier-3 network design, wired and wireless surveillance deployment, SAN/NAS storage integration, domain architecture and structured cabling. Trained with IBM, Cambium and more.</p></div>
+        <div class="t-yrs">14 Years</div>
+      </div>
+      <div class="team-card reveal">
+        <div><div class="t-init">YM</div><h3>Yeshwanth M</h3><div class="t-role">Sr. Business Development Executive</div>
+        <p>Brings surveillance and enterprise-business experience to market with the enterprise products that fuel growth for organizations of every size.</p></div>
+        <div class="t-yrs">6+ Years</div>
+      </div>
+      <div class="team-card reveal">
+        <div><div class="t-init">SK</div><h3>Sunil Kumar</h3><div class="t-role">Presales Engineer</div>
+        <p>Designs RFPs and bills of materials for networking, CCTV surveillance and security solutions — turning requirements into buildable specifications.</p></div>
+        <div class="t-yrs">1+ Year</div>
+      </div>
+      <div class="team-card reveal" style="justify-content:center;align-items:flex-start">
+        <div>
+          <div class="eyebrow" style="margin-bottom:18px">Join us</div>
+          <h3 style="margin-top:0">We're always looking for people who care about systems that don't fail.</h3>
+          <a class="btn ghost" style="margin-top:26px" href="https://ramanit.in/careers/" target="_blank" rel="noopener">Careers
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h11M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-grid">
+      <div>
+        <div class="eyebrow reveal">Contact</div>
+        <h2 class="h-xl">
+          <span class="ln"><span class="line-mask"><span>Let's build</span></span></span>
+          <span class="ln"><span class="line-mask"><span>something that</span></span></span>
+          <span class="ln"><span class="line-mask"><span><span class="copper">never goes down.</span></span></span></span>
+        </h2>
+        <p class="lead reveal" style="margin-bottom:18px">Tell us about your infrastructure challenge — consultation is where every great system begins.</p>
+        <a class="big-mail reveal" href="mailto:info@ramanit.in">info@ramanit.in</a>
+        <div style="margin-top:44px" class="reveal">
+          <a class="btn" href="https://ramanit.in/contact-us/" target="_blank" rel="noopener">Start the conversation
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h11M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="office reveal">
+          <div class="o-lbl">Head Office — Mysuru</div>
+          <p>#876/C, 3rd Floor, Jhansi Rani Lakshmi Bai Rd,<br/>near RTO Office, Lakshmipuram,<br/>Mysuru, Karnataka 570004</p>
+        </div>
+        <div class="office reveal">
+          <div class="o-lbl">Corporate Office — Bengaluru</div>
+          <p>#734, 22nd Main, 12th Cross,<br/>JP Nagar 2nd Phase,<br/>Bengaluru 560078</p>
+        </div>
+        <div class="office reveal">
+          <div class="o-lbl">Call</div>
+          <p><a href="tel:08212429535">0821-242 9535 / 36</a> · Support: <a href="tel:9342193421">93421 93421</a></p>
+        </div>
+        <div class="office reveal">
+          <div class="o-lbl">Hours</div>
+          <p>Mon – Sat: 9:30 AM – 6:30 PM · Sunday closed</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-top">
+    <a class="logo" href="#top"><span class="dot"></span><span>RAMAN<em>iT</em></span></a>
+    <div class="foot-links">
+      <a href="#about">About</a><a href="#solutions">Solutions</a><a href="#services">Services</a><a href="#cases">Cases</a>
+      <a href="https://www.instagram.com/ramanitmysore/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.facebook.com/harish.sv.14" target="_blank" rel="noopener">Facebook</a>
+    </div>
+  </div>
+  <div class="giant-brand" id="giantBrand">Raman iT</div>
+  <div class="foot-bottom">
+    <span>© 2026 Raman CompuiT Solutions Pvt Ltd.</span>
+    <span>Mysuru · Bengaluru · India</span>
+    <span>Privacy / Terms / Sitemap</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ================= LENIS SMOOTH SCROLL ================= */
+let lenis = null;
+if (!reduceMotion && typeof Lenis !== 'undefined') {
+  lenis = new Lenis({ lerp: 0.085, wheelMultiplier: 1.0, smoothWheel: true });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((time) => lenis.raf(time * 1000));
+  gsap.ticker.lagSmoothing(0);
+}
+// Anchor links via lenis
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (id.length > 1 && document.querySelector(id)) {
+      e.preventDefault();
+      document.getElementById('mmenu').classList.remove('open');
+      if (lenis) lenis.scrollTo(id, { offset: -70, duration: 1.4 });
+      else document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+
+/* ================= THREE.JS DATA TERRAIN ================= */
+let scrollProgress = 0, mouseX = 0, mouseY = 0;
+(function initThree() {
+  const canvas = document.getElementById('bg');
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8));
+  renderer.setSize(innerWidth, innerHeight);
+
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x050810, 0.016);
+  const camera = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, 0.1, 400);
+  camera.position.set(0, 7, 26);
+
+  /* --- particle wave terrain --- */
+  const COLS = 110, ROWS = 70, SPACING = 1.15;
+  const terrainGeo = new THREE.BufferGeometry();
+  const count = COLS * ROWS;
+  const pos = new Float32Array(count * 3);
+  const colors = new Float32Array(count * 3);
+  const copper = new THREE.Color(0xe58a3e);
+  const blueC = new THREE.Color(0x35507f), boneC = new THREE.Color(0x9aa4b8);
+  let i3 = 0;
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
+      pos[i3]     = (c - COLS / 2) * SPACING;
+      pos[i3 + 1] = 0;
+      pos[i3 + 2] = (r - ROWS / 2) * SPACING;
+      // copper hotspots scattered through blue field
+      const t = Math.random();
+      const col = t > 0.86 ? copper : (t > 0.5 ? blueC : boneC.clone().multiplyScalar(0.55));
+      colors[i3] = col.r; colors[i3 + 1] = col.g; colors[i3 + 2] = col.b;
+      i3 += 3;
+    }
+  }
+  terrainGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  terrainGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  const terrainMat = new THREE.PointsMaterial({
+    size: 0.09, vertexColors: true, transparent: true, opacity: 0.9,
+    blending: THREE.AdditiveBlending, depthWrite: false
+  });
+  const terrain = new THREE.Points(terrainGeo, terrainMat);
+  terrain.position.y = -6;
+  scene.add(terrain);
+
+  /* --- floating data dust --- */
+  const dustGeo = new THREE.BufferGeometry();
+  const DUST = 420;
+  const dPos = new Float32Array(DUST * 3);
+  const dCol = new Float32Array(DUST * 3);
+  for (let i = 0; i < DUST; i++) {
+    dPos[i * 3]     = (Math.random() - 0.5) * 90;
+    dPos[i * 3 + 1] = Math.random() * 36 - 8;
+    dPos[i * 3 + 2] = (Math.random() - 0.5) * 70;
+    const c = Math.random() > 0.78 ? copper : boneC;
+    dCol[i * 3] = c.r; dCol[i * 3 + 1] = c.g; dCol[i * 3 + 2] = c.b;
+  }
+  dustGeo.setAttribute('position', new THREE.BufferAttribute(dPos, 3));
+  dustGeo.setAttribute('color', new THREE.BufferAttribute(dCol, 3));
+  const dust = new THREE.Points(dustGeo, new THREE.PointsMaterial({
+    size: 0.14, vertexColors: true, transparent: true, opacity: 0.75,
+    blending: THREE.AdditiveBlending, depthWrite: false
+  }));
+  scene.add(dust);
+
+  /* --- wireframe core (icosahedron) --- */
+  const coreGeo = new THREE.IcosahedronGeometry(7.5, 1);
+  const core = new THREE.LineSegments(
+    new THREE.WireframeGeometry(coreGeo),
+    new THREE.LineBasicMaterial({ color: 0xe58a3e, transparent: true, opacity: 0.16 })
+  );
+  core.position.set(13, 9, -14);
+  scene.add(core);
+
+  const coreInner = new THREE.LineSegments(
+    new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(4.2, 0)),
+    new THREE.LineBasicMaterial({ color: 0x6fa8ff, transparent: true, opacity: 0.12 })
+  );
+  coreInner.position.copy(core.position);
+  scene.add(coreInner);
+
+  /* --- mouse parallax --- */
+  addEventListener('pointermove', e => {
+    mouseX = (e.clientX / innerWidth - 0.5) * 2;
+    mouseY = (e.clientY / innerHeight - 0.5) * 2;
+  });
+
+  const clock = new THREE.Clock();
+  function animate() {
+    requestAnimationFrame(animate);
+    const t = clock.getElapsedTime();
+
+    if (!reduceMotion) {
+      // wave the terrain
+      const p = terrainGeo.attributes.position.array;
+      let idx = 0;
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          const x = p[idx], z = p[idx + 2];
+          p[idx + 1] =
+            Math.sin(x * 0.32 + t * 0.9) * 0.65 +
+            Math.cos(z * 0.28 + t * 0.6) * 0.85 +
+            Math.sin((x + z) * 0.12 + t * 0.4) * 1.1;
+          idx += 3;
+        }
+      }
+      terrainGeo.attributes.position.needsUpdate = true;
+      dust.rotation.y = t * 0.018;
+      core.rotation.x = t * 0.07; core.rotation.y = t * 0.1;
+      coreInner.rotation.x = -t * 0.12; coreInner.rotation.y = -t * 0.08;
+    }
+
+    // scroll choreography: camera dives & terrain tilts through the page
+    const sp = scrollProgress;
+    camera.position.y = 7 - sp * 9.5;
+    camera.position.z = 26 - sp * 7;
+    camera.rotation.x = -sp * 0.32;
+    terrain.rotation.z = sp * 0.22;
+    core.position.x = 13 - sp * 30;
+    core.material.opacity = 0.16 + sp * 0.1;
+    terrainMat.opacity = 0.9 - sp * 0.35;
+
+    // mouse parallax (eased)
+    camera.position.x += ((mouseX * 1.6) - camera.position.x) * 0.04;
+    camera.rotation.y += ((-mouseX * 0.04) - camera.rotation.y) * 0.05;
+
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  addEventListener('resize', () => {
+    camera.aspect = innerWidth / innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(innerWidth, innerHeight);
+  });
+})();
+
+// page-level scroll progress drives the 3D camera
+ScrollTrigger.create({
+  trigger: document.body, start: 'top top', end: 'bottom bottom',
+  onUpdate: self => { scrollProgress = self.progress; }
+});
+
+/* ================= PRELOADER + HERO INTRO ================= */
+const heroChars = [];
+document.querySelectorAll('#heroTitle [data-line]').forEach(line => {
+  const split = (node) => {
+    [...node.childNodes].forEach(n => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        n.textContent.split('').forEach(ch => {
+          const s = document.createElement('span');
+          s.className = 'ch';
+          s.innerHTML = ch === ' ' ? '&nbsp;' : ch;
+          frag.appendChild(s);
+          heroChars.push(s);
+        });
+        node.replaceChild(frag, n);
+      } else if (n.nodeType === 1) split(n);
+    });
+  };
+  split(line);
+});
+
+const lnum = document.getElementById('lnum');
+const loadState = { v: 0 };
+const introTL = gsap.timeline();
+
+introTL
+  .to(loadState, {
+    v: 100, duration: reduceMotion ? 0.1 : 1.9, ease: 'power2.inOut',
+    onUpdate: () => { lnum.textContent = Math.round(loadState.v); }
+  })
+  .to('#lbar', { width: '100%', duration: reduceMotion ? 0.1 : 1.9, ease: 'power2.inOut' }, 0)
+  .to('#loader', { yPercent: -100, duration: 0.9, ease: 'power4.inOut' }, '+=0.15')
+  .from('#nav', { y: -40, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.45')
+  .to(heroChars, {
+    y: 0, duration: 1.1, ease: 'power4.out',
+    stagger: { each: 0.022, from: 'start' }
+  }, '-=0.55')
+  .to('[data-intro]', { opacity: 1, y: 0, duration: 0.9, stagger: 0.12, ease: 'power3.out' }, '-=0.7');
+
+gsap.set('[data-intro]', { opacity: 0, y: 30 });
+
+/* ================= NAV SCROLL STATE ================= */
+ScrollTrigger.create({
+  start: 80, onToggle: s => document.getElementById('nav').classList.toggle('scrolled', s.isActive)
+});
+document.getElementById('burger').addEventListener('click', () =>
+  document.getElementById('mmenu').classList.toggle('open'));
+
+/* ================= MARQUEE ================= */
+if (!reduceMotion) {
+  gsap.to('#marquee', { xPercent: -50, ease: 'none', duration: 26, repeat: -1 });
+}
+
+/* ================= GENERIC REVEALS ================= */
+gsap.utils.toArray('.reveal').forEach(el => {
+  gsap.to(el, {
+    opacity: 1, y: 0, x: 0, duration: 1.05, ease: 'power3.out',
+    scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
+  });
+});
+
+/* hero h1 parallax-out on scroll */
+gsap.to('#heroTitle', {
+  yPercent: -18, opacity: 0.25, ease: 'none',
+  scrollTrigger: { trigger: '.hero', start: 'bottom 80%', end: 'bottom 10%', scrub: true }
+});
+
+/* the giant 29 scales subtly with scroll */
+gsap.fromTo('#bigYears', { scale: 0.86, opacity: 0.4 }, {
+  scale: 1, opacity: 1, ease: 'none',
+  scrollTrigger: { trigger: '#about', start: 'top 80%', end: 'top 20%', scrub: true }
+});
+
+/* sol-card cursor glow */
+document.querySelectorAll('.sol-card').forEach(card => {
+  card.addEventListener('pointermove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  });
+});
+
+/* ================= HORIZONTAL SERVICES ================= */
+ScrollTrigger.matchMedia({
+  '(min-width: 761px)': function () {
+    const rail = document.getElementById('svcRail');
+    const tween = gsap.to(rail, {
+      x: () => -(rail.scrollWidth - innerWidth),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#svcWrap',
+        start: 'top 16%',
+        end: () => '+=' + (rail.scrollWidth - innerWidth + 200),
+        pin: '.services',
+        scrub: 1,
+        invalidateOnRefresh: true,
+        onUpdate: self => gsap.set('#svcFill', { scaleX: self.progress })
+      }
+    });
+    // card entrance inside the rail
+    gsap.from('.svc-card', {
+      y: 60, opacity: 0, stagger: 0.08, duration: 0.9, ease: 'power3.out',
+      scrollTrigger: { trigger: '#svcWrap', start: 'top 70%' }
+    });
+    return () => tween.scrollTrigger && tween.scrollTrigger.kill();
+  },
+  '(max-width: 760px)': function () {
+    gsap.utils.toArray('.svc-card').forEach(c => {
+      gsap.from(c, {
+        y: 50, opacity: 0, duration: 0.9, ease: 'power3.out',
+        scrollTrigger: { trigger: c, start: 'top 90%' }
+      });
+    });
+  }
+});
+
+/* ================= COUNTERS ================= */
+gsap.utils.toArray('[data-count]').forEach(el => {
+  const target = +el.dataset.count;
+  const obj = { v: 0 };
+  ScrollTrigger.create({
+    trigger: el, start: 'top 85%', once: true,
+    onEnter: () => gsap.to(obj, {
+      v: target, duration: 2.2, ease: 'power3.out',
+      onUpdate: () => { el.textContent = Math.round(obj.v); }
+    })
+  });
+  el.textContent = '0';
+});
+
+/* ================= TESTIMONIAL WORD SCRUB ================= */
+const quote = document.getElementById('quote');
+quote.innerHTML = quote.textContent.trim().split(/\s+/).map(w => `<span class="w">${w}</span>`).join(' ');
+gsap.to('#quote .w', {
+  opacity: 1, stagger: 0.06, ease: 'none',
+  scrollTrigger: { trigger: '.testimonial', start: 'top 75%', end: 'top 20%', scrub: true }
+});
+
+/* ================= CONTACT HEADLINE LINES ================= */
+gsap.utils.toArray('#contact .line-mask > span').forEach((ln, i) => {
+  gsap.to(ln, {
+    y: 0, duration: 1.1, ease: 'power4.out', delay: i * 0.1,
+    scrollTrigger: { trigger: '#contact', start: 'top 70%' }
+  });
+});
+gsap.set('#contact .line-mask > span', { y: '110%' });
+
+/* ================= GIANT FOOTER BRAND ================= */
+gsap.fromTo('#giantBrand', { yPercent: 36, opacity: 0.25 }, {
+  yPercent: 0, opacity: 1, ease: 'none',
+  scrollTrigger: { trigger: 'footer', start: 'top 95%', end: 'bottom bottom', scrub: true }
+});
+
+/* ================= CUSTOM CURSOR ================= */
+(function initCursor(){
+  if (window.matchMedia('(pointer:coarse)').matches) return;
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  const label = document.getElementById('cursorLabel');
+
+  const dotX = gsap.quickTo(dot, 'x', { duration: 0.12, ease: 'power3' });
+  const dotY = gsap.quickTo(dot, 'y', { duration: 0.12, ease: 'power3' });
+  const ringX = gsap.quickTo(ring, 'x', { duration: 0.45, ease: 'power3' });
+  const ringY = gsap.quickTo(ring, 'y', { duration: 0.45, ease: 'power3' });
+
+  addEventListener('pointermove', e => {
+    dotX(e.clientX); dotY(e.clientY);
+    ringX(e.clientX); ringY(e.clientY);
+  });
+  addEventListener('pointerdown', () => ring.classList.add('is-down'));
+  addEventListener('pointerup', () => ring.classList.remove('is-down'));
+  document.addEventListener('mouseleave', () => gsap.to([dot, ring], { opacity: 0, duration: 0.3 }));
+  document.addEventListener('mouseenter', () => gsap.to([dot, ring], { opacity: 1, duration: 0.3 }));
+
+  // generic interactive hover → ring grows
+  const hoverables = 'a, button, .sol-card, .team-card, .vert-row, .turnkey span, .test-others span';
+  document.querySelectorAll(hoverables).forEach(el => {
+    el.addEventListener('pointerenter', () => ring.classList.add('is-hover'));
+    el.addEventListener('pointerleave', () => ring.classList.remove('is-hover'));
+  });
+
+  // labelled cursor states
+  const setLabel = (el, text) => {
+    el.addEventListener('pointerenter', () => {
+      label.textContent = text;
+      ring.classList.add('is-label');
+      gsap.to(dot, { opacity: 0, duration: 0.2 });
+    });
+    el.addEventListener('pointerleave', () => {
+      ring.classList.remove('is-label');
+      gsap.to(dot, { opacity: 1, duration: 0.2 });
+    });
+  };
+  document.querySelectorAll('.case-card').forEach(el => setLabel(el, 'View'));
+  document.querySelectorAll('#svcWrap').forEach(el => setLabel(el, 'Scroll'));
+  document.querySelectorAll('.big-mail').forEach(el => setLabel(el, 'Write'));
+})();
+
+/* ================= SKILL BARS ================= */
+gsap.utils.toArray('.skill').forEach(skill => {
+  const fill = skill.querySelector('.s-fill');
+  const valEl = skill.querySelector('.s-val');
+  const target = +valEl.dataset.skill;
+  const obj = { v: 0 };
+  ScrollTrigger.create({
+    trigger: skill, start: 'top 85%', once: true,
+    onEnter: () => {
+      gsap.to(fill, { width: target + '%', duration: 1.8, ease: 'power3.inOut' });
+      gsap.to(obj, {
+        v: target, duration: 1.8, ease: 'power3.inOut',
+        onUpdate: () => { valEl.textContent = Math.round(obj.v) + '%'; }
+      });
+    }
+  });
+});
+
+/* refresh after fonts/layout settle */
+addEventListener('load', () => setTimeout(() => ScrollTrigger.refresh(), 300));
+</script>
+</body>
+</html>
